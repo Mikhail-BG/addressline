@@ -1,0 +1,4 @@
+regexps:
+  containsDigit: ".*\\d+.*"
+common:
+  splitter: " |;|:|,"
