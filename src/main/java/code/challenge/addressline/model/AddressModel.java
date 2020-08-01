@@ -15,6 +15,12 @@ public class AddressModel extends BaseJsonModel
 
     }
 
+    /**
+     * Default constructor.
+     *
+     * @param street street value
+     * @param housenumber house number value
+     */
     public AddressModel(String street, String housenumber)
     {
         this.street = street;
@@ -61,5 +67,11 @@ public class AddressModel extends BaseJsonModel
     public int hashCode()
     {
         return Objects.hash(street, housenumber);
+    }
+
+    @Override
+    public String toString()
+    {
+        return "{\"street\": \"" + street + "\", \"housenumber\": \"" + housenumber + "\"}";
     }
 }

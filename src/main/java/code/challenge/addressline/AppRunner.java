@@ -17,7 +17,7 @@ public class AppRunner
         System.out.println(RegexpProperties.CONTAINS_DIGIT);
 
         AddressParser parser = new AddressParser();
-        AddressModel add = parser.parseAddress("Winterallee 3");
+        System.out.println(parser.parseAddress("Winterallee 3").toJson());
 
 
     }

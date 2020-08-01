@@ -5,11 +5,16 @@ package code.challenge.addressline.configuration;
  */
 public class CommonProperties extends YamlPropertyReader
 {
-    public static final String SPLITTER;
+    public static final String STR_SPLITTER;
+    public static final String APP_SPLITTER;
+    public static final String SPACE_SPLITTER;
+
     private static final String SECTION = "common";
 
     static
     {
-        SPLITTER = readValues(SECTION).get("splitter");
+        STR_SPLITTER = readValues(SECTION).get("strSplitter");
+        APP_SPLITTER = readValues(SECTION).get("appSplitter");
+        SPACE_SPLITTER = readValues(SECTION).get("spaceSplitter");
     }
 }

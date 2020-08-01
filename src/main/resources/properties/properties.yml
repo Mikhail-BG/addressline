@@ -1,4 +1,12 @@
 regexps:
   containsDigit: ".*\\d+.*"
 common:
-  splitter: " |;|:|,"
+  strSplitter: " |;|:|,"
+  appSplitter: ","
+  spaceSplitter: " "
+dictionary:
+  numberSights:
+    - "#"
+    - "№"
+    - "No"
+    - "Num"
