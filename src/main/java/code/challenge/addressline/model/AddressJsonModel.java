@@ -5,12 +5,12 @@ import java.util.Objects;
 /**
  * Model of Address to return
  */
-public class AddressModel extends BaseJsonModel
+public class AddressJsonModel extends BaseJsonModel
 {
     private String street;
     private String housenumber;
 
-    public AddressModel()
+    public AddressJsonModel()
     {
 
     }
@@ -21,7 +21,7 @@ public class AddressModel extends BaseJsonModel
      * @param street street value
      * @param housenumber house number value
      */
-    public AddressModel(String street, String housenumber)
+    public AddressJsonModel(String street, String housenumber)
     {
         this.street = street;
         this.housenumber = housenumber;
@@ -58,7 +58,7 @@ public class AddressModel extends BaseJsonModel
         {
             return false;
         }
-        AddressModel that = (AddressModel) o;
+        AddressJsonModel that = (AddressJsonModel) o;
 
         return Objects.equals(street, that.street) && Objects.equals(housenumber, that.housenumber);
     }
@@ -67,11 +67,5 @@ public class AddressModel extends BaseJsonModel
     public int hashCode()
     {
         return Objects.hash(street, housenumber);
-    }
-
-    @Override
-    public String toString()
-    {
-        return "{\"street\": \"" + street + "\", \"housenumber\": \"" + housenumber + "\"}";
     }
 }

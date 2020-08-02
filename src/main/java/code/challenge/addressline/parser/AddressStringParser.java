@@ -10,7 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import code.challenge.addressline.configuration.CommonProperties;
 import code.challenge.addressline.configuration.DictionaryProperties;
 import code.challenge.addressline.configuration.RegexpProperties;
-import code.challenge.addressline.model.AddressModel;
+import code.challenge.addressline.model.AddressJsonModel;
 import code.challenge.addressline.parser.exception.AddressParseException;
 import code.challenge.addressline.parser.validator.ValidatorFactory;
 
@@ -41,7 +41,7 @@ public final class AddressStringParser extends BaseStringParser
      *
      * @return Address model if parsed
      */
-    public AddressModel parseAddress()
+    public AddressJsonModel parseAddress()
     {
         if (!isInputValid())
         {
@@ -51,7 +51,7 @@ public final class AddressStringParser extends BaseStringParser
         String houseNumber = parseHouseNumber();
         String street = compileStreet();
 
-        return new AddressModel(street, houseNumber);
+        return new AddressJsonModel(street, houseNumber);
     }
 
     private List<String> splitWords(String stroke)
@@ -64,42 +64,50 @@ public final class AddressStringParser extends BaseStringParser
 
     private String parseHouseNumber()
     {
-        List<String> houseNumberWords = new ArrayList<>();
-        int positionOfNumSight = numSightPosition(inputWords);
+        String houseNumber;
+        int positionOfNumSign = positionOfHouseNumberSight(inputWords);
 
-        // Consider num sight in the beginning and house number follows after num sight
-        if (positionOfNumSight == 0)
+        // Consider number sign in the beginning and house number follows after number sign
+        if (positionOfNumSign == 0)
         {
-            Map<Integer, String> positionAndNumbers = findNumbers(inputWords);
-            if (positionAndNumbers.size() > 2)
-            {
-                houseNumberWords.add("");
-                filterStreetWords(houseNumberWords);
-                return compileHouseNumber(houseNumberWords);
-            }
-            else
-            {
-                int startNumberPosition = positionAndNumbers.keySet().iterator().next() - 1;
-                int endNumberPosition = startNumberPosition + 1;
-                if (endNumberPosition < inputWords.size() && isWordIsIndexAtPosition(endNumberPosition))
-                {
-                    endNumberPosition += 1;
-                }
-                houseNumberWords = filterHouseNumberWords(startNumberPosition, endNumberPosition);
-                filterStreetWords(houseNumberWords);
-                return compileHouseNumber(houseNumberWords);
-            }
+            houseNumber = compileHouseNoNumberSign();
         }
         else
         {
-            houseNumberWords.add(inputWords.get(positionOfNumSight - 1));
-            houseNumberWords.addAll(filterHouseNumberWords(positionOfNumSight, inputWords.size()));
-            filterStreetWords(houseNumberWords);
-            return compileHouseNumber(houseNumberWords);
+            houseNumber = compileHouseNumberWithNumberSign(positionOfNumSign);
         }
+
+        return houseNumber;
     }
 
-    private int numSightPosition(List<String> words)
+    private String compileHouseNoNumberSign()
+    {
+        List<String> houseNumberWords;
+        Map<Integer, String> positionAndNumbers = findNumbers(inputWords);
+        int startNumberPosition = positionAndNumbers.keySet().iterator().next() - 1;
+        int endNumberPosition = startNumberPosition + 1;
+
+        if (endNumberPosition < inputWords.size() && isWordIndexAtPosition(endNumberPosition))
+        {
+            endNumberPosition += 1;
+        }
+
+        houseNumberWords = filterHouseNumberWords(startNumberPosition, endNumberPosition);
+        filterStreetWords(houseNumberWords);
+
+        return compileHouseNumber(houseNumberWords);
+    }
+
+    private String compileHouseNumberWithNumberSign(int positionOfNumSign)
+    {
+        List<String> houseNumberWords = new ArrayList<>();
+        houseNumberWords.add(inputWords.get(positionOfNumSign - 1));
+        houseNumberWords.addAll(filterHouseNumberWords(positionOfNumSign, inputWords.size()));
+        filterStreetWords(houseNumberWords);
+        return compileHouseNumber(houseNumberWords);
+    }
+
+    private int positionOfHouseNumberSight(List<String> words)
     {
         int position = 0;
         for (String word : words)
@@ -133,7 +141,7 @@ public final class AddressStringParser extends BaseStringParser
         return strWithDigits;
     }
 
-    private boolean isWordIsIndexAtPosition(int position)
+    private boolean isWordIndexAtPosition(int position)
     {
         return inputWords.get(position).length() == 1;
     }

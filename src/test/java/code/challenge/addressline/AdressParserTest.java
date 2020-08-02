@@ -22,20 +22,20 @@ class AddressParserTest
     @CsvFileSource(resources = "/SimpleTest.csv", numLinesToSkip = 1, delimiter = ';')
     public void simpleStringAddressParsing(String input, String expectedJson)
     {
-        Assertions.assertEquals(expectedJson, new AddressStringParser(input).parseAddress().toString());
+        Assertions.assertEquals(expectedJson, new AddressStringParser(input).parseAddress().toFormattedJson());
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/ComplicatedTest.csv", numLinesToSkip = 1, delimiter = ';')
     public void complicatedStringAddressParsing(String input, String expectedJson)
     {
-        Assertions.assertEquals(expectedJson, new AddressStringParser(input).parseAddress().toString());
+        Assertions.assertEquals(expectedJson, new AddressStringParser(input).parseAddress().toFormattedJson());
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/OtherCountries.csv", numLinesToSkip = 1, delimiter = ';')
     public void otherCountriesStringAddressParsing(String input, String expectedJson)
     {
-        Assertions.assertEquals(expectedJson, new AddressStringParser(input).parseAddress().toString());
+        Assertions.assertEquals(expectedJson, new AddressStringParser(input).parseAddress().toFormattedJson());
     }
 }

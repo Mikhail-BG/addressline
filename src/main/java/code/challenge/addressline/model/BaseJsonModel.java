@@ -1,6 +1,8 @@
 package code.challenge.addressline.model;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 import code.challenge.addressline.logger.LocalLog;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -11,13 +13,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class BaseJsonModel
 {
-    public String toJson()
+    public String toFormattedJson()
     {
         String json = StringUtils.EMPTY;
 
         try
         {
-            json = new ObjectMapper().writeValueAsString(this);
+            json = new ObjectMapper().writer()
+                    .writeValueAsString(this)
+                    .replaceAll("\":", "\": ")
+                    .replaceAll("\",", "\", ");
         }
         catch (JsonProcessingException exception)
         {
@@ -26,5 +31,11 @@ public class BaseJsonModel
         }
 
         return json;
+    }
+
+    @Override
+    public String toString()
+    {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.SIMPLE_STYLE);
     }
 }
