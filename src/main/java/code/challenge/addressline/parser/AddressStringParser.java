@@ -99,7 +99,7 @@ public final class AddressStringParser extends BaseStringParser
         int endNumberPosition = startNumberPosition + 1;
 
         // Check if next word is house number index
-        if (endNumberPosition < words.size() && isWordIndexAtPosition(endNumberPosition))
+        if (endNumberPosition < words.size() && isWordIndexAtPosition(words, endNumberPosition))
         {
             endNumberPosition += 1;
         }
@@ -154,10 +154,10 @@ public final class AddressStringParser extends BaseStringParser
         return strWithDigits;
     }
 
-    private boolean isWordIndexAtPosition(int position)
+    private boolean isWordIndexAtPosition(List<String> words, int position)
     {
         // Assume index is one sign length
-        return inputWords.get(position).length() == 1;
+        return words.get(position).length() == 1;
     }
 
     private List<String> filterHouseNumberWords(List<String> words, int fromIndex, int toIndex)
