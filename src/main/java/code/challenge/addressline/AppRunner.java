@@ -3,7 +3,7 @@ package code.challenge.addressline;
 import code.challenge.addressline.configuration.RegexpProperties;
 import code.challenge.addressline.logger.LocalLog;
 import code.challenge.addressline.model.AddressModel;
-import code.challenge.addressline.parser.AddressParser;
+import code.challenge.addressline.parser.AddressStringParser;
 
 public class AppRunner
 {
@@ -16,8 +16,8 @@ public class AppRunner
 
         System.out.println(RegexpProperties.CONTAINS_DIGIT);
 
-        AddressParser parser = new AddressParser();
-        System.out.println(parser.parseAddress("Winterallee 3").toJson());
+        AddressStringParser parser = new AddressStringParser("Winterallee 3");
+        System.out.println(parser.parseAddress().toJson());
 
 
     }

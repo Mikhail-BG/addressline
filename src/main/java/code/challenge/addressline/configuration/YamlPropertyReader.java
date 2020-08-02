@@ -30,7 +30,7 @@ public class YamlPropertyReader
      */
     protected static Map<String, String> readValues(String section)
     {
-        Map<String, Map<String, String>> properties = readProperties(String.class);
+        Map<String, Map<String, String>> properties = readProperties();
 
         return properties.get(section);
     }
@@ -44,7 +44,7 @@ public class YamlPropertyReader
     @SuppressWarnings({"rawtypes"})
     protected static Map<String, List<String>> readListValues(String section)
     {
-        Map<String, Map<String, List>> properties = readProperties(List.class);
+        Map<String, Map<String, List>> properties = readProperties();
         Map<String, List<String>> sectionProperties = new HashMap<>();
         Map<String, List> rawSectionProperties = properties.get(section);
         for (String key: rawSectionProperties.keySet())
@@ -61,7 +61,7 @@ public class YamlPropertyReader
     }
 
     @SuppressWarnings("unchecked")
-    private static <T> Map<String, Map<String, T>> readProperties(Class<T> clazz)
+    private static <T> Map<String, Map<String, T>> readProperties()
     {
         Map<String, Map<String, T>> properties = null;
         InputStream resource = RegexpProperties.class.getResourceAsStream(FILENAME);

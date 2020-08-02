@@ -7,14 +7,11 @@ import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
-import code.challenge.addressline.configuration.DictionaryProperties;
 import code.challenge.addressline.logger.LocalLog;
-import code.challenge.addressline.parser.AddressParser;
+import code.challenge.addressline.parser.AddressStringParser;
 
 class AddressParserTest
 {
-    private final AddressParser addressParser = new AddressParser();
-
     @BeforeEach
     public void init(TestInfo testInfo)
     {
@@ -23,22 +20,22 @@ class AddressParserTest
 
     @ParameterizedTest
     @CsvFileSource(resources = "/SimpleTest.csv", numLinesToSkip = 1, delimiter = ';')
-    public void simpleStringAddressParsing(String solidLine, String expectedJson)
+    public void simpleStringAddressParsing(String input, String expectedJson)
     {
-        Assertions.assertEquals(expectedJson, addressParser.parseAddress(solidLine).toString());
+        Assertions.assertEquals(expectedJson, new AddressStringParser(input).parseAddress().toString());
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/ComplicatedTest.csv", numLinesToSkip = 1, delimiter = ';')
-    public void complicatedStringAddressParsing(String solidLine, String expectedJson)
+    public void complicatedStringAddressParsing(String input, String expectedJson)
     {
-        Assertions.assertEquals(expectedJson, addressParser.parseAddress(solidLine).toString());
+        Assertions.assertEquals(expectedJson, new AddressStringParser(input).parseAddress().toString());
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/OtherCountries.csv", numLinesToSkip = 1, delimiter = ';')
-    public void otherCountriesStringAddressParsing(String solidLine, String expectedJson)
+    public void otherCountriesStringAddressParsing(String input, String expectedJson)
     {
-        Assertions.assertEquals(expectedJson, addressParser.parseAddress(solidLine).toString());
+        Assertions.assertEquals(expectedJson, new AddressStringParser(input).parseAddress().toString());
     }
 }
