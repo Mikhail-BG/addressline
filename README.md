@@ -15,10 +15,14 @@ There are following assumptions regarding provided specifications:
  * pre-defined signs are being using in input as splitters.
 
 ## Test application
-Run `AddressParserTest` to execute tests.
+>Run `AddressParserTest` to execute tests:
+> * with IDE runner;
+> * or with Maven: `mvn clean test`.
 
 There are three test-data sets according specification.
 Test-data is located in `test/resources/*.csv`:
  * `ComplicatedTest.csv`
  * `OtherCountries.csv`;
  * `SimpleTest.csv`.
+ 
+ Log report: `log/log.log`
