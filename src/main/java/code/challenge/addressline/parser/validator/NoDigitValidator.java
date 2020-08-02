@@ -4,6 +4,9 @@ import java.util.regex.Pattern;
 
 import code.challenge.addressline.configuration.RegexpProperties;
 
+/**
+ * Verifies if input contains any digit values.
+ */
 public class NoDigitValidator implements Validator
 {
     @Override

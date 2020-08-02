@@ -4,7 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * Application logger
+ * Application logger.
  */
 public final class LocalLog
 {

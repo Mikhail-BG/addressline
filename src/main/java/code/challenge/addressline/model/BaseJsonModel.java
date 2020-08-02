@@ -9,10 +9,16 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Base class for JSON models
+ * Base class for JSON models.
  */
 public class BaseJsonModel
 {
+
+    /**
+     * Converts to customer JSON format.
+     *
+     * @return converted JSON
+     */
     public String toFormattedJson()
     {
         String json = StringUtils.EMPTY;

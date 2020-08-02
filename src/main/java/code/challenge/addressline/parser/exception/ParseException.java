@@ -2,9 +2,12 @@ package code.challenge.addressline.parser.exception;
 
 import code.challenge.addressline.logger.LocalLog;
 
-public class AddressParseException extends RuntimeException
+/**
+ * Exception for non-valid values provided to parse.
+ */
+public class ParseException extends RuntimeException
 {
-    public AddressParseException(String errorMessage)
+    public ParseException(String errorMessage)
     {
         super(errorMessage);
         LocalLog.error(errorMessage);

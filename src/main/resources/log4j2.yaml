@@ -21,7 +21,7 @@ Configutation:
       AppenderRef:
         - ref: Console_Appender
     Logger:
-      - name: code.challenge.addressline.logger
+      - name: code.challenge.addressline
         level: debug
         AppenderRef:
           - ref: File_Appender

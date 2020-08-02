@@ -3,17 +3,12 @@ package code.challenge.addressline.model;
 import java.util.Objects;
 
 /**
- * Model of Address to return
+ * Model of Address to return.
  */
 public class AddressJsonModel extends BaseJsonModel
 {
     private String street;
     private String housenumber;
-
-    public AddressJsonModel()
-    {
-
-    }
 
     /**
      * Default constructor.

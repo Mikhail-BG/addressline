@@ -1,7 +1,7 @@
 package code.challenge.addressline.configuration;
 
 /**
- * Storage for common properties
+ * Storage for common properties.
  */
 public class CommonProperties extends YamlPropertyReader
 {

@@ -1,7 +1,7 @@
 package code.challenge.addressline.configuration;
 
 /**
- * Storage for Regexps
+ * Storage for regexps.
  */
 public class RegexpProperties extends YamlPropertyReader
 {

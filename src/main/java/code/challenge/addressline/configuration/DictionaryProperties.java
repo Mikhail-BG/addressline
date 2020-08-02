@@ -2,6 +2,9 @@ package code.challenge.addressline.configuration;
 
 import java.util.List;
 
+/**
+ * Storage for dictionaries.
+ */
 public class DictionaryProperties extends YamlPropertyReader
 {
     public static final List<String> NUM_SIGHT_DICTIONARY;

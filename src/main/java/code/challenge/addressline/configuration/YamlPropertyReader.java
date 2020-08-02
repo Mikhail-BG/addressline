@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
 /**
- * Reads pre-defined property yaml file.
+ * Reads pre-defined properties from yaml file.
  */
 public class YamlPropertyReader
 {
@@ -26,7 +26,7 @@ public class YamlPropertyReader
      * Reads all values in the property file into Map.
      *
      * @param section section name with properties
-     * @return Map with properties
+     * @return Map with property name and properties
      */
     protected static Map<String, String> readValues(String section)
     {
@@ -39,18 +39,18 @@ public class YamlPropertyReader
      * Reads all values in the property file into Map.
      *
      * @param section section name with properties
-     * @return Map with properties
+     * @return Map with property name and arrays of properties
      */
-    @SuppressWarnings({"rawtypes"})
+    @SuppressWarnings("rawtypes")
     protected static Map<String, List<String>> readListValues(String section)
     {
         Map<String, Map<String, List>> properties = readProperties();
         Map<String, List<String>> sectionProperties = new HashMap<>();
         Map<String, List> rawSectionProperties = properties.get(section);
-        for (String key: rawSectionProperties.keySet())
+        for (String key : rawSectionProperties.keySet())
         {
             List<String> values = new ArrayList<>();
-            for(Object value: rawSectionProperties.get(key))
+            for (Object value : rawSectionProperties.get(key))
             {
                 values.add((String) value);
             }
@@ -64,20 +64,15 @@ public class YamlPropertyReader
     private static <T> Map<String, Map<String, T>> readProperties()
     {
         Map<String, Map<String, T>> properties = null;
-        InputStream resource = RegexpProperties.class.getResourceAsStream(FILENAME);
-        try
+
+        try (InputStream resource = RegexpProperties.class.getResourceAsStream(FILENAME))
         {
             properties = new ObjectMapper(new YAMLFactory()).readValue(resource, Map.class);
         }
         catch (IOException exception)
         {
-            LocalLog.error("Error reading REGEXP values" + exception.getMessage());
+            LocalLog.fatal("Error reading properties, file: " + FILENAME + "\n" + exception.getMessage());
             exception.printStackTrace();
-        }
-
-        if (properties == null)
-        {
-            throw new RuntimeException("Error reading properties, file: " + FILENAME);
         }
 
         return properties;
