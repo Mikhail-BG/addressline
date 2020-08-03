@@ -47,7 +47,7 @@ public final class AddressStringParser extends BaseStringParser
      * Parses street name and house number for the provided string line.
      *
      * @return Address model if parsed
-     * @throws ParseException in case if validation fails.
+     * @throws ParseException in case if validation fails
      */
     public AddressJsonModel parseAddress() throws ParseException
     {
@@ -76,12 +76,12 @@ public final class AddressStringParser extends BaseStringParser
     private String parseHouseNumber()
     {
         String houseNumber;
-        int positionOfNumSign = positionOfHouseNumberSight(inputWords);
+        int positionOfNumSign = positionOfHouseNumberSign(inputWords);
 
         // Case without house number sign
         if (positionOfNumSign == -1)
         {
-            houseNumber = compileHouseNoNumberSign(new ArrayList<>(), inputWords);
+            houseNumber = compileHouseNumberNoNumberSign(new ArrayList<>(), inputWords);
         }
         // Case with house number sign
         else
@@ -92,7 +92,7 @@ public final class AddressStringParser extends BaseStringParser
         return houseNumber;
     }
 
-    private String compileHouseNoNumberSign(List<String> houseNumberWords, List<String> words)
+    private String compileHouseNumberNoNumberSign(List<String> houseNumberWords, List<String> words)
     {
         Map<Integer, String> positionAndNumbers = findNumbers(words);
         int startNumberPosition = positionAndNumbers.keySet().iterator().next() - 1;
@@ -115,12 +115,12 @@ public final class AddressStringParser extends BaseStringParser
         List<String> houseNumberWords = new ArrayList<>();
         houseNumberWords.add(inputWords.get(positionOfNumSign));
 
-        return compileHouseNoNumberSign(
+        return compileHouseNumberNoNumberSign(
                 houseNumberWords,
                 filterHouseNumberWords(inputWords, positionOfNumSign + 1, inputWords.size()));
     }
 
-    private int positionOfHouseNumberSight(List<String> words)
+    private int positionOfHouseNumberSign(List<String> words)
     {
         int position = 0;
         for (String word : words)
@@ -133,6 +133,7 @@ public final class AddressStringParser extends BaseStringParser
             position += 1;
         }
 
+        // Assume that number sign is not the last word of the input
         return position == words.size() ? -1 : position;
     }
 

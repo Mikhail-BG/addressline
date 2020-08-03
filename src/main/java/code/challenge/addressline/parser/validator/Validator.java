@@ -7,7 +7,8 @@ public interface Validator
 {
 
     /**
-     * Validates value.
+     * Validates input value.
+     *
      * @param input provided value for validation
      * @return true if valid
      */

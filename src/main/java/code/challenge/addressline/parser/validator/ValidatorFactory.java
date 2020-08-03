@@ -13,6 +13,7 @@ public class ValidatorFactory
 
     /**
      * Default constructor.
+     *
      * @param input provided value for validation
      */
     public ValidatorFactory(String input)

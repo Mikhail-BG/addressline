@@ -9,10 +9,11 @@ Application uses:
 ## Assumptions
 There are following assumptions regarding provided specifications:
  * input consists of street name and house number only;
+ * word order in input is meaningful;
  * there are some house number signs could be used, eg: "No";
  * a street name could contain digits but house number starts with special sign or word;
  * house index is only one-sign length;
- * pre-defined signs are being using in input as splitters.
+ * pre-defined signs are being using in input as splitters, eg: space, comma.
 
 ## Test application
 >Run `AddressParserTest` to execute tests:

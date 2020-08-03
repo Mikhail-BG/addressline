@@ -13,6 +13,7 @@ public class NoDigitValidator implements Validator
     public boolean validate(String input)
     {
         Pattern pattern = Pattern.compile(RegexpProperties.CONTAINS_DIGIT);
+
         return !pattern.matcher(input).find();
     }
 }
