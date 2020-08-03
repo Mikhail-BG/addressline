@@ -125,7 +125,7 @@ public final class AddressStringParser extends BaseStringParser
         int position = 0;
         for (String word : words)
         {
-            if (DictionaryProperties.NUM_SIGHT_DICTIONARY
+            if (DictionaryProperties.NUM_SIGN_DICTIONARY
                     .stream().anyMatch(dictWord -> dictWord.equalsIgnoreCase(word)))
             {
                 break;

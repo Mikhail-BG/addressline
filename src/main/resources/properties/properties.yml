@@ -5,7 +5,7 @@ common:
   appSplitter: ","
   spaceSplitter: " "
 dictionary:
-  numberSights:
+  numberSigns:
     - "#"
     - "№"
     - "No"

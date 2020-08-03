@@ -7,11 +7,11 @@ import java.util.List;
  */
 public class DictionaryProperties extends YamlPropertyReader
 {
-    public static final List<String> NUM_SIGHT_DICTIONARY;
+    public static final List<String> NUM_SIGN_DICTIONARY;
     private static final String SECTION = "dictionary";
 
     static
     {
-        NUM_SIGHT_DICTIONARY = readListValues(SECTION).get("numberSights");
+        NUM_SIGN_DICTIONARY = readListValues(SECTION).get("numberSigns");
     }
 }
