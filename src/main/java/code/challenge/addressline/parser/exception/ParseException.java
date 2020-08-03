@@ -5,7 +5,7 @@ import code.challenge.addressline.logger.LocalLog;
 /**
  * Exception for non-valid values provided to parse.
  */
-public class ParseException extends RuntimeException
+public class ParseException extends Exception
 {
     public ParseException(String errorMessage)
     {

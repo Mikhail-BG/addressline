@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 
 import code.challenge.addressline.logger.LocalLog;
 import code.challenge.addressline.parser.AddressStringParser;
+import code.challenge.addressline.parser.exception.ParseException;
 
 class AddressParserTest
 {
@@ -49,7 +50,15 @@ class AddressParserTest
 
     private String getAndLogActualJson(String input)
     {
-        String actualJson = new AddressStringParser(input).parseAddress().toFormattedJson();
+        String actualJson = null;
+        try
+        {
+            actualJson = new AddressStringParser(input).parseAddress().toFormattedJson();
+        }
+        catch (ParseException exception)
+        {
+            exception.printStackTrace();
+        }
         LocalLog.info("Parsed JSON: " + actualJson);
 
         return actualJson;

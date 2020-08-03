@@ -49,7 +49,7 @@ public final class AddressStringParser extends BaseStringParser
      * @return Address model if parsed
      * @throws ParseException in case if validation fails.
      */
-    public AddressJsonModel parseAddress()
+    public AddressJsonModel parseAddress() throws ParseException
     {
         if (!isInputValid())
         {
