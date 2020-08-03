@@ -57,7 +57,7 @@ class AddressParserTest
         }
         catch (ParseException exception)
         {
-            exception.printStackTrace();
+            LocalLog.error("Error on parsing test data: \"" + input + "\"\n" + exception.getLocalizedMessage());
         }
         LocalLog.info("Parsed JSON: " + actualJson);
 
