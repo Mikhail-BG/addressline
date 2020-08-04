@@ -65,10 +65,10 @@ public final class AddressStringParser extends BaseStringParser
         return new AddressJsonModel(street, houseNumber);
     }
 
-    private List<String> splitWords(String stroke)
+    private List<String> splitWords(String input)
     {
         pattern = Pattern.compile(CommonProperties.STR_SPLITTER);
-        List<String> rawWords = Arrays.asList(pattern.split(stroke));
+        List<String> rawWords = Arrays.asList(pattern.split(input));
 
         return rawWords.stream().map(String::strip).filter(StringUtils::isNotEmpty).collect(Collectors.toList());
     }
